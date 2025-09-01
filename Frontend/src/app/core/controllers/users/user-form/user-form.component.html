@@ -1,0 +1,130 @@
+<div class="container" *ngIf="pageMode === 'edit'">
+  <h2>Edit User</h2>
+
+  <form (ngSubmit)="onSubmit()" #UserForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="user.username" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="text" id="password" name="password" class="form-control" [(ngModel)]="user.password" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <input type="text" id="role" name="role" class="form-control" [(ngModel)]="user.role" required placeholder="MANAGER, RECEPTIONIST or CLEANER"/>
+    </div>
+
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="user.fullName"/>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" id="email" name="email" class="form-control" [(ngModel)]="user.email" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <input type="text" id="status" name="status" class="form-control" [(ngModel)]="user.status" required placeholder="ACTIVE, BUSY or NOT_ACTIVE"/>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn btn-success" [disabled]="!UserForm.form.valid"> Update Movie </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="container" *ngIf="pageMode === 'add'">
+  <h2>Add User</h2>
+
+  <form (ngSubmit)="onSubmit()" #UserForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="registeredUser.username" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="text" id="password" name="password" class="form-control" [(ngModel)]="registeredUser.password" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <input type="text" id="role" name="role" class="form-control" [(ngModel)]="registeredUser.role" required placeholder="MANAGER, RECEPTIONIST or CLEANER"/>
+    </div>
+
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="registeredUser.fullName"/>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" id="email" name="email" class="form-control" [(ngModel)]="registeredUser.email" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="registeredUser.phoneNumber" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <input type="text" id="status" name="status" class="form-control" [(ngModel)]="registeredUser.status" required placeholder="ACTIVE, BUSY or NOT_ACTIVE"/>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn btn-success" [disabled]="!UserForm.form.valid"> Add Movie </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="details-container" *ngIf="pageMode === 'details'">
+  <div class="details-content">
+    <h1 class="movie-title-large"> {{ user.fullName }} </h1>
+
+    <div class="movie-info">
+      <div class="info-item">
+        <div class="info-label">Username</div>
+        <div class="info-value">{{ user.username }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Role</div>
+        <div class="info-value">{{ user.role }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Email</div>
+        <div class="info-value">{{ user.email }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Phone Number</div>
+        <div class="info-value">{{ user.phoneNumber }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Status</div>
+        <div class="info-value">{{ user.status }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-actions">
+    <button class="btn btn-secondary" (click)="cancel()"> ← Back to Users </button>
+    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit User </button>
+    <button class="btn btn-danger" (click)="delete(user.id!)"> 🗑️ Delete User </button>
+  </div>
+</div>

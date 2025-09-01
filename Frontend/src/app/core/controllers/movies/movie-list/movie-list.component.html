@@ -1,0 +1,32 @@
+<div class="app-container">
+  <header class="header">
+    <h1 class="app-title">🎬 MovieRev</h1>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="addMovie()">
+        ✨ Add Movie
+      </button>
+      <button class="btn btn-logout" (click)="logout()">
+        👋 Logout
+      </button>
+    </div>
+  </header>
+
+  <div class="movies-grid">
+    <div class="movie-card" *ngFor="let movie of movies" (click)="details(movie.id!)">
+      <img *ngIf="movie.posterUrl" [src]="movie.posterUrl" class="movie-poster" [alt]="movie.title + ' poster'"/>
+      <div *ngIf="!movie.posterUrl" class="no-poster">🎭</div>
+      
+      <div class="movie-content">
+        <h3 class="movie-title">{{ movie.title }}</h3>
+        <div class="movie-actions">
+          <button class="btn btn-edit" (click)="editMovie(movie.id!)">
+            ✏️ Edit
+          </button>
+          <button class="btn btn-delete" (click)="deleteMovie(movie.id!); $event.stopPropagation()">
+            🗑️ Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

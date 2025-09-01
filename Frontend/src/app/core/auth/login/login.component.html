@@ -1,0 +1,33 @@
+<div class="container mt-5" style="max-width: 400px;">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">Login</h3>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" name="username" class="form-control" [(ngModel)]="loginData.username" required
+            [disabled]="isLoading">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-control" [(ngModel)]="loginData.password" required
+            [disabled]="isLoading">
+        </div>
+        <div class="mb-3" *ngIf="errorMessage">
+          <div class="alert alert-danger">{{ errorMessage }}</div>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+          </button>
+        </div>
+      </form>
+      <div class="text-center mt-3">
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
