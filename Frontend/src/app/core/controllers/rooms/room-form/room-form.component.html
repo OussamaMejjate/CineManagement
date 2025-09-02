@@ -1,1 +1,66 @@
-<p>room-form works!</p>
+<div class="container" *ngIf="pageMode === 'add' || pageMode === 'edit'">
+  <h2>{{ pageMode === 'edit' ? 'Edit Room' : 'Add New Room' }}</h2>
+
+  <form (ngSubmit)="onSubmit()" #roomForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" id="name" name="name" class="form-control" [(ngModel)]="room.name" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="capacity" class="form-label">Capacity</label>
+      <input type="number" id="capacity" name="capacity" class="form-control" [(ngModel)]="room.capacity" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="roomType" class="form-label">Type</label>
+      <select id="roomType" name="roomType" class="form-control" [(ngModel)]="room.roomType" required>
+        <option value="" disabled selected>Select room type</option>
+        <option value="STANDARD">Standard</option>
+        <option value="HD">HD</option>
+        <option value="IMAX">IMAX</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" id="location" name="location" class="form-control" [(ngModel)]="room.location" required/>
+    </div>
+
+    <div class="btn-container">
+      <button type="submit" class="btn btn-success" [disabled]="!roomForm.form.valid">
+        {{ pageMode === 'edit' ? 'Update Room' : 'Add Room' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="details-container" *ngIf="pageMode === 'details'">
+  <div class="details-content">
+    <h1 class="movie-title-large"> {{ room.name }} </h1>
+
+    <div class="movie-info">
+      <div class="info-item">
+        <div class="info-label">Capacity</div>
+        <div class="info-value">{{ room.capacity }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Type</div>
+        <div class="info-value">{{ room.roomType }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Location</div>
+        <div class="info-value">{{ room.location }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-actions">
+    <button class="btn btn-secondary" (click)="cancel()"> ← Back to Rooms </button>
+    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit Room </button>
+    <button class="btn btn-danger" (click)="delete(room.id!)"> 🗑️ Delete Room </button>
+  </div>
+</div>

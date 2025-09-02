@@ -14,7 +14,12 @@
 
     <div class="mb-3">
       <label for="role" class="form-label">Role</label>
-      <input type="text" id="role" name="role" class="form-control" [(ngModel)]="user.role" required placeholder="MANAGER, RECEPTIONIST or CLEANER"/>
+      <select id="role" name="role" class="form-control" [(ngModel)]="user.role" required>
+        <option value="" disabled selected>Select role</option>
+        <option value="MANAGER">Manager</option>
+        <option value="RECEPTIONIST">Receptionist</option>
+        <option value="CLEANER">Cleaner</option>
+      </select>
     </div>
 
     <div class="mb-3">
@@ -35,6 +40,16 @@
     <div class="mb-3">
       <label for="status" class="form-label">Status</label>
       <input type="text" id="status" name="status" class="form-control" [(ngModel)]="user.status" required placeholder="ACTIVE, BUSY or NOT_ACTIVE"/>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select id="status" name="status" class="form-control" [(ngModel)]="user.status" required>
+        <option value="" disabled selected>Select status</option>
+        <option value="ACTIVE">Active</option>
+        <option value="BUSY">Busy</option>
+        <option value="NOT_ACTIVE">Not Active</option>
+      </select>
     </div>
 
     <div class="btn-container">
@@ -60,7 +75,12 @@
 
     <div class="mb-3">
       <label for="role" class="form-label">Role</label>
-      <input type="text" id="role" name="role" class="form-control" [(ngModel)]="registeredUser.role" required placeholder="MANAGER, RECEPTIONIST or CLEANER"/>
+      <select id="role" name="role" class="form-control" [(ngModel)]="user.role" required>
+        <option value="" disabled selected>Select role</option>
+        <option value="MANAGER">Manager</option>
+        <option value="RECEPTIONIST">Receptionist</option>
+        <option value="CLEANER">Cleaner</option>
+      </select>
     </div>
 
     <div class="mb-3">
@@ -80,7 +100,12 @@
 
     <div class="mb-3">
       <label for="status" class="form-label">Status</label>
-      <input type="text" id="status" name="status" class="form-control" [(ngModel)]="registeredUser.status" required placeholder="ACTIVE, BUSY or NOT_ACTIVE"/>
+      <select id="status" name="status" class="form-control" [(ngModel)]="user.status" required>
+        <option value="" disabled selected>Select status</option>
+        <option value="ACTIVE">Active</option>
+        <option value="BUSY">Busy</option>
+        <option value="NOT_ACTIVE">Not Active</option>
+      </select>
     </div>
 
     <div class="btn-container">

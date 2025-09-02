@@ -1,43 +1,32 @@
 <div class="app-container">
   <header class="header">
-    <h1 class="app-title">👥 Users Management</h1>
+    <h1 class="app-title">🎥 Rooms Management</h1>
     <div class="header-actions">
-      <button class="btn btn-primary" (click)="add()"> ✨ Add User </button>
+      <button class="btn btn-primary" (click)="add()"> ✨ Add Room </button>
       <button class="btn btn-logout" (click)="goBack()"> ← Back to Movies </button>
     </div>
   </header>
 
-  <div class="users-table-container">
-    <table class="users-table">
+  <div class="rooms-table-container">
+    <table class="rooms-table">
       <thead>
         <tr>
-          <th>User</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
+          <th>Name</th>
+          <th>Capacity</th>
+          <th>Type</th>
+          <th>Location</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="user-row" *ngFor="let user of users">
-          <td class="user-info">
-            <div class="user-avatar"> {{ user.username }} </div>
-            <div class="user-details">
-              <div class="user-name"> {{ user.fullName }} </div>
-              <div class="user-username"> {{ user.username }} </div>
-              <div class="user-phone"> {{ user.phoneNumber }} </div>
-            </div>
-          </td>
-          <td class="user-email"> {{ user.email }} </td>
-          <td class="user-role">
-            <span class="role-badge"> {{ user.role }} </span>
-          </td>
-          <td class="user-status">
-            <span class="status-badge"><span class="status-dot"></span> {{ user.status }} </span>
-          </td>
-          <td class="user-actions">
-            <button class="btn btn-sm btn-edit" (click)="edit(user.id!)" title="Edit User"> ✏️ </button>
-            <button class="btn btn-sm btn-delete" (click)="delete(user.id!)" title="Delete User"> 🗑️ </button>
+        <tr class="room-row" *ngFor="let room of rooms" (click)="details(room.id!)">
+          <td class="room-info"> {{ room.name }} </td>
+          <td class="room-capacity"> {{ room.capacity }} </td>
+          <td class="room.roomType"> {{ room.roomType }} </td>
+          <td class="room-location"> {{ room.location }} </td>
+          <td class="room-actions">
+            <button class="btn btn-sm btn-edit" (click)="edit(room.id!)" title="Edit Room"> ✏️ </button>
+            <button class="btn btn-sm btn-delete" (click)="delete(room.id!); $event.stopPropagation()" title="Delete Room"> 🗑️ </button>
           </td>
         </tr>
       </tbody>

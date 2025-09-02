@@ -38,6 +38,18 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/users/details', id], { queryParams: { pageMode: 'details' } });
   }
 
+  getInitials(name: string): string {
+    if (!name) return '?';
+
+    const words = name.split('');
+
+    if (words.length === 1) {
+      return words[0].substring(0, 2).toUpperCase();
+    }
+
+    return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+  }
+
   delete(id: number): void {
     if (confirm('Are you sure you want to delete this movie?')) {
       this.userService.delete(id).subscribe(() => {

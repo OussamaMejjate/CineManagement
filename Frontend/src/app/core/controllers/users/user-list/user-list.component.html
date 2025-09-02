@@ -19,9 +19,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="user-row" *ngFor="let user of users">
+        <tr class="user-row" *ngFor="let user of users" (click)="details(user.id!)">
           <td class="user-info">
-            <div class="user-avatar"> {{ user.username }} </div>
+            <div class="user-avatar"> {{ getInitials(user.fullName!) }} </div>
             <div class="user-details">
               <div class="user-name"> {{ user.fullName }} </div>
               <div class="user-username"> {{ user.username }} </div>
@@ -37,7 +37,7 @@
           </td>
           <td class="user-actions">
             <button class="btn btn-sm btn-edit" (click)="edit(user.id!)" title="Edit User"> ✏️ </button>
-            <button class="btn btn-sm btn-delete" (click)="delete(user.id!)" title="Delete User"> 🗑️ </button>
+            <button class="btn btn-sm btn-delete" (click)="delete(user.id!); $event.stopPropagation()" title="Delete User"> 🗑️ </button>
           </td>
         </tr>
       </tbody>

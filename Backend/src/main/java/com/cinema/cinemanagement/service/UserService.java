@@ -1,7 +1,7 @@
 package com.cinema.cinemanagement.service;
 
-import com.cinema.cinemanagement.exception.MovieDuplicateException;
-import com.cinema.cinemanagement.exception.MovieNotFoundException;
+import com.cinema.cinemanagement.exception.UserDuplicateException;
+import com.cinema.cinemanagement.exception.UserNotFoundException;
 import com.cinema.cinemanagement.model.Role;
 import com.cinema.cinemanagement.model.Status;
 import com.cinema.cinemanagement.model.User;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,7 +24,7 @@ public class UserService {
     public User registerUser(String username, String password, Role role, String fullName, String email,
                              String phoneNumber, Status status) {
         if (userRepository.existsByUsername(username)) {
-            throw new RuntimeException("Username already exists.");
+            throw new UserDuplicateException("A user with the same username already exists");
         }
 
         User user = new User();
@@ -44,10 +43,8 @@ public class UserService {
     public User editUser(Long id, User updatedUser) {
         User existing = getUserById(id);
 
-        boolean isDuplicate = userRepository.existsByUsername(updatedUser.getUsername());
-
-        if (isDuplicate) {
-            throw new MovieDuplicateException("A user with the same username already exists");
+        if (userRepository.existsByUsernameAndIdNot(updatedUser.getUsername(), updatedUser.getId())) {
+            throw new UserDuplicateException("A user with the same username already exists");
         }
 
         existing.setUsername(updatedUser.getUsername());
@@ -66,17 +63,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUseById(Long id) {
-        return userRepository.findById(id);
-    }
-
     public User getUserById(Long id) {
         return userRepository.findById(id).
-                orElseThrow(() -> new MovieNotFoundException("User with the id " + id + " not found."));
-    }
-
-    public Optional<User> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+                orElseThrow(() -> new UserNotFoundException("User with the id " + id + " not found."));
     }
 
     public void deleteUser(Long id) {

@@ -35,7 +35,7 @@ public class RoomService {
     public Room editRoom(Long id, Room updatedRoom) {
         Room existing = getRoomById(id);
 
-        if(roomRepository.existsByName(updatedRoom.getName())) {
+        if(roomRepository.existsByNameAndIdNot(updatedRoom.getName(), updatedRoom.getId())) {
             throw new RoomDuplicateException("A room with that name already exists.");
         }
 

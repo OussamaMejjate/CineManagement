@@ -25,4 +25,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleRoomDuplicate(RoomDuplicateException ex) {
         return ResponseEntity.status(404).body(ex.getMessage());
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
+        return ResponseEntity.status(404).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UserDuplicateException.class)
+    public ResponseEntity<String> handleUserDuplicate(UserDuplicateException ex) {
+        return ResponseEntity.status(404).body(ex.getMessage());
+    }
 }
