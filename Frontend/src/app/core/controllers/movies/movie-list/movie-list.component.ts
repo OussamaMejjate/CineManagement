@@ -28,15 +28,15 @@ export class MovieListComponent implements OnInit{
   }
 
   addMovie(): void {
-    this.router.navigate(['/add'], { queryParams: { pageMode: 'add' } });
+    this.router.navigate(['/movies/add'], { queryParams: { pageMode: 'add' } });
   }
 
   editMovie(id: number): void {
-    this.router.navigate(['/edit', id], { queryParams: { pageMode: 'edit' } });
+    this.router.navigate(['/movies/edit', id], { queryParams: { pageMode: 'edit' } });
   }
 
-  details(id: number): void {
-    this.router.navigate(['/details', id], { queryParams: { pageMode: 'details' } });
+  detailsMovie(id: number): void {
+    this.router.navigate(['/movies/details', id], { queryParams: { pageMode: 'details' } });
   }
 
   deleteMovie(id: number): void {

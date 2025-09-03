@@ -35,10 +35,9 @@ public class MovieService {
 
     public Movie editMovie(Long id, Movie updatedMovie) {
         Movie existing = getMovieById(id);
-        boolean isDuplicate = movieRepository.existsByTitleAndDescriptionAndReleaseDateAndIdNot(
-                updatedMovie.getTitle(), updatedMovie.getDescription(), updatedMovie.getReleaseDate(), id);
 
-        if (isDuplicate) {
+        if (movieRepository.existsByTitleAndDescriptionAndReleaseDateAndIdNot(updatedMovie.getTitle(),
+                updatedMovie.getDescription(), updatedMovie.getReleaseDate(), id)) {
             throw new MovieDuplicateException("A movie with the same title and description and release date already exists.");
         }
 
@@ -51,6 +50,7 @@ public class MovieService {
         existing.setDuration(updatedMovie.getDuration());
         existing.setReleaseDate(updatedMovie.getReleaseDate());
         existing.setPosterUrl(updatedMovie.getPosterUrl());
+
         return movieRepository.save(existing);
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from '../../../models/room.model';
 import { RoomService } from '../../../services/room.service';
 import { FormsModule } from '@angular/forms';
@@ -51,7 +51,7 @@ export class RoomFormComponent implements OnInit {
     this.pageMode = 'edit';
   }
 
-  delete(id: number): void {
+  deleteRoom(id: number): void {
     if (confirm('Are you sure you want to delete this room?')) {
       this.roomService.delete(id).subscribe(() => {
         this.router.navigate(['/rooms']);

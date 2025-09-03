@@ -29,7 +29,7 @@
 
     <div class="btn-container">
       <button type="submit" class="btn btn-success" [disabled]="!roomForm.form.valid">
-        {{ pageMode === 'edit' ? 'Update Room' : 'Add Room' }}
+        {{ pageMode === 'edit' ? 'Update Room' : 'Add New Room' }}
       </button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     </div>
@@ -38,9 +38,9 @@
 
 <div class="details-container" *ngIf="pageMode === 'details'">
   <div class="details-content">
-    <h1 class="movie-title-large"> {{ room.name }} </h1>
+    <h1 class="room-title-large"> {{ room.name }} </h1>
 
-    <div class="movie-info">
+    <div class="room-info">
       <div class="info-item">
         <div class="info-label">Capacity</div>
         <div class="info-value">{{ room.capacity }}</div>
@@ -60,7 +60,7 @@
 
   <div class="details-actions">
     <button class="btn btn-secondary" (click)="cancel()"> ← Back to Rooms </button>
-    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit Room </button>
-    <button class="btn btn-danger" (click)="delete(room.id!)"> 🗑️ Delete Room </button>
+    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit </button>
+    <button class="btn btn-danger" (click)="deleteRoom(room.id!)"> 🗑️ Delete </button>
   </div>
 </div>

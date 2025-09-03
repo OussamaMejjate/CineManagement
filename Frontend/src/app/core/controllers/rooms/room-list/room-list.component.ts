@@ -26,19 +26,19 @@ export class RoomListComponent implements OnInit {
     })
   }
 
-  add(): void {
+  addRoom(): void {
     this.router.navigate(['/rooms/add'], { queryParams: { pageMode: 'add' } });
   }
 
-  edit(id: number): void {
+  editRoom(id: number): void {
     this.router.navigate(['/rooms/edit', id], { queryParams: { pageMode: 'edit' } });
   }
 
-  details(id: number): void {
+  detailsRoom(id: number): void {
     this.router.navigate(['/rooms/details', id], { queryParams: { pageMode: 'details' } });
   }
 
-  delete(id: number): void {
+  deleteRoom(id: number): void {
     if (confirm('Are you sure you want to delete this room?')) {
       this.roomService.delete(id).subscribe(() => {
         this.loadRooms();

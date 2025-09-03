@@ -2,7 +2,7 @@
   <header class="header">
     <h1 class="app-title">🎥 Rooms Management</h1>
     <div class="header-actions">
-      <button class="btn btn-primary" (click)="add()"> ✨ Add Room </button>
+      <button class="btn btn-primary" (click)="addRoom()"> ✨ Add Room </button>
       <button class="btn btn-logout" (click)="goBack()"> ← Back to Movies </button>
     </div>
   </header>
@@ -19,14 +19,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="room-row" *ngFor="let room of rooms" (click)="details(room.id!)">
+        <tr class="room-row" *ngFor="let room of rooms" (click)="detailsRoom(room.id!)">
           <td class="room-info"> {{ room.name }} </td>
           <td class="room-capacity"> {{ room.capacity }} </td>
           <td class="room.roomType"> {{ room.roomType }} </td>
           <td class="room-location"> {{ room.location }} </td>
           <td class="room-actions">
-            <button class="btn btn-sm btn-edit" (click)="edit(room.id!)" title="Edit Room"> ✏️ </button>
-            <button class="btn btn-sm btn-delete" (click)="delete(room.id!); $event.stopPropagation()" title="Delete Room"> 🗑️ </button>
+            <button class="btn btn-sm btn-edit" (click)="editRoom(room.id!)" title="Edit Room"> ✏️ </button>
+            <button class="btn btn-sm btn-delete" (click)="deleteRoom(room.id!); $event.stopPropagation()" title="Delete Room"> 🗑️ </button>
           </td>
         </tr>
       </tbody>

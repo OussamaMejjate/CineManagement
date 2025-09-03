@@ -55,6 +55,7 @@ public class UserService {
         existing.setPhoneNumber(updatedUser.getPhoneNumber());
         existing.setStatus(updatedUser.getStatus());
         existing.setEnabled(updatedUser.isEnabled());
+
         return userRepository.save(existing);
     }
 

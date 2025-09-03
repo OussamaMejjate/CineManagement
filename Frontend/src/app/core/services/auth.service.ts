@@ -15,9 +15,6 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   private currentUserSubject = new BehaviorSubject<User | null>(this.getCurrentUser());
 
-  private isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
-  private currentUser$ = this.currentUserSubject.asObservable();
-
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
@@ -63,11 +60,6 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.hasToken();
-  }
-
-  isAdmin(): boolean {
-    const user = this.getCurrentUser();
-    return user?.role === 'ADMIN';
   }
 
   private hasToken(): boolean {

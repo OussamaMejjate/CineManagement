@@ -1,5 +1,5 @@
 <div class="container" *ngIf="pageMode === 'add' || pageMode === 'edit'">
-  <h2>{{ pageMode === 'edit' ? 'Edit Movie' : 'Add New Movie' }}</h2>
+  <h2> {{ pageMode === 'edit' ? 'Edit Movie' : 'Add New Movie' }} </h2>
 
   <form (ngSubmit)="onSubmit()" #movieForm="ngForm" novalidate>
     <div class="mb-3">
@@ -9,27 +9,27 @@
 
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
-      <textarea id="description" name="description" class="form-control" rows="4" [(ngModel)]="movie.description" placeholder="Enter movie description..."></textarea>
+      <textarea id="description" name="description" class="form-control" rows="4" [(ngModel)]="movie.description" required></textarea>
     </div>
 
     <div class="mb-3">
       <label for="genre" class="form-label">Genre</label>
-      <input type="text" id="genre" name="genre" class="form-control" [(ngModel)]="movie.genre" required placeholder="e.g., Action, Comedy, Drama"/>
+      <input type="text" id="genre" name="genre" class="form-control" [(ngModel)]="movie.genre" required/>
     </div>
 
     <div class="mb-3">
       <label for="cast" class="form-label">Cast</label>
-      <input type="text" id="cast" name="cast" class="form-control" [(ngModel)]="movie.cast" required placeholder="Main actors"/>
+      <input type="text" id="cast" name="cast" class="form-control" [(ngModel)]="movie.cast" required/>
     </div>
 
     <div class="mb-3">
       <label for="language" class="form-label">Language</label>
-      <input type="text" id="language" name="language" class="form-control" [(ngModel)]="movie.language" required placeholder="e.g., English, Spanish"/>
+      <input type="text" id="language" name="language" class="form-control" [(ngModel)]="movie.language" required/>
     </div>
 
     <div class="mb-3">
       <label for="duration" class="form-label">Duration</label>
-      <input type="text" id="duration" name="duration" class="form-control" [(ngModel)]="movie.duration" required placeholder="e.g., 120 minutes"/>
+      <input type="text" id="duration" name="duration" class="form-control" [(ngModel)]="movie.duration" required/>
     </div>
 
     <div class="mb-3">
@@ -39,12 +39,12 @@
 
     <div class="mb-3">
       <label for="posterUrl" class="form-label">Poster URL</label>
-      <input type="text" id="posterUrl" name="posterUrl" class="form-control" [(ngModel)]="movie.posterUrl" required placeholder="https://example.com/poster.jpg"/>
+      <input type="text" id="posterUrl" name="posterUrl" class="form-control" [(ngModel)]="movie.posterUrl" required/>
     </div>
 
     <div class="btn-container">
       <button type="submit" class="btn btn-success" [disabled]="!movieForm.form.valid">
-        {{ pageMode === 'edit' ? 'Update Movie' : 'Add Movie' }}
+        {{ pageMode === 'edit' ? 'Update Movie' : 'Add New Movie' }}
       </button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     </div>
@@ -58,44 +58,44 @@
   </div>
 
   <div class="details-content">
-    <h1 class="movie-title-large">{{ movie.title }}</h1>
+    <h1 class="movie-title-large"> {{ movie.title }} </h1>
 
     <div class="movie-info">
       <div class="info-item">
         <div class="info-label">Genre</div>
-        <div class="info-value">{{ movie.genre }}</div>
+        <div class="info-value"> {{ movie.genre }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Language</div>
-        <div class="info-value">{{ movie.language }}</div>
+        <div class="info-value"> {{ movie.language }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Duration</div>
-        <div class="info-value">{{ movie.duration }}</div>
+        <div class="info-value"> {{ formatDuration(movie.duration) }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Release Date</div>
-        <div class="info-value">{{ movie.releaseDate | date:'longDate' }}</div>
+        <div class="info-value"> {{ movie.releaseDate | date:'longDate' }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Cast</div>
-        <div class="info-value">{{ movie.cast }}</div>
+        <div class="info-value"> {{ movie.cast }} </div>
       </div>
 
-      <div class="description-item" *ngIf="movie.description">
+      <div class="description-item">
         <div class="info-label">Description</div>
-        <div class="description-value">{{ movie.description }}</div>
+        <div class="description-value"> {{ movie.description }} </div>
       </div>
     </div>
   </div>
 
   <div class="details-actions">
     <button class="btn btn-secondary" (click)="cancel()"> ← Back to Movies </button>
-    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit Movie </button>
-    <button class="btn btn-danger" (click)="deleteMovie(movie.id!)"> 🗑️ Delete Movie </button>
+    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit </button>
+    <button class="btn btn-danger" (click)="deleteMovie(movie.id!)"> 🗑️ Delete </button>
   </div>
 </div>

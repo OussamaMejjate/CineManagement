@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './movie-form.component.css'
 })
 export class MovieFormComponent implements OnInit {
-  movie: Movie = { title: '', description: '', genre: '', director: '', cast: '', language: '', duration: 1,
-                   releaseDate: new Date(), posterUrl: ''};
+  movie: Movie = { title: '', description: '', genre: '', director: '', cast: '', language: '', duration: 1, releaseDate: new Date(),
+                   posterUrl: ''};
 
   pageMode: String | null = '';
 
@@ -23,16 +23,14 @@ export class MovieFormComponent implements OnInit {
     this.pageMode = this.route.snapshot.queryParamMap.get('pageMode');
     const id = this.route.snapshot.paramMap.get('id');
     if(this.pageMode == 'edit' && id) {
-      this.pageMode = 'edit';
       this.movieService.getById(+id).subscribe({
         next: (data) => (this.movie = data),
-        error: () => this.router.navigate(['/']),
+        error: () => this.router.navigate(['/movies']),
       });
     } else if(this.pageMode == 'details' && id) {
-      this.pageMode = 'details';
       this.movieService.getById(+id).subscribe({
         next: (data) => (this.movie = data),
-        error: () => this.router.navigate(['/']),
+        error: () => this.router.navigate(['/movies']),
       });
     }
   }
@@ -41,11 +39,11 @@ export class MovieFormComponent implements OnInit {
     this.pageMode = this.route.snapshot.queryParamMap.get('pageMode');
     if (this.pageMode == 'edit') {
       this.movieService.edit(this.movie.id!, this.movie).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/movies']);
       })
     } else if (this.pageMode == 'add') {
       this.movieService.add(this.movie).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/movies']);
       })
     }
   }
@@ -57,12 +55,27 @@ export class MovieFormComponent implements OnInit {
   deleteMovie(id: number): void {
     if (confirm('Are you sure you want to delete this movie?')) {
       this.movieService.delete(id).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/movies']);
       })
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/'])
+    this.router.navigate(['/movies'])
+  }
+
+  formatDuration(minutes: number): string {
+    if (!minutes || minutes <= 0) return '';
+
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    if (hours > 0 && remainingMinutes > 0) {
+      return hours + "h" + remainingMinutes + "min";
+    } else if (hours > 0) {
+      return hours + "h";
+    } else {
+      return minutes + "min";
+    }
   }
 }

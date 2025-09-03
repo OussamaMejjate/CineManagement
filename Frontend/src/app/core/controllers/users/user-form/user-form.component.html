@@ -1,7 +1,7 @@
 <div class="container" *ngIf="pageMode === 'edit'">
   <h2>Edit User</h2>
 
-  <form (ngSubmit)="onSubmit()" #UserForm="ngForm" novalidate>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" id="username" name="username" class="form-control" [(ngModel)]="user.username" required/>
@@ -24,7 +24,7 @@
 
     <div class="mb-3">
       <label for="fullName" class="form-label">Full Name</label>
-      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="user.fullName"/>
+      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="user.fullName" required/>
     </div>
 
     <div class="mb-3">
@@ -39,11 +39,6 @@
 
     <div class="mb-3">
       <label for="status" class="form-label">Status</label>
-      <input type="text" id="status" name="status" class="form-control" [(ngModel)]="user.status" required placeholder="ACTIVE, BUSY or NOT_ACTIVE"/>
-    </div>
-
-    <div class="mb-3">
-      <label for="status" class="form-label">Status</label>
       <select id="status" name="status" class="form-control" [(ngModel)]="user.status" required>
         <option value="" disabled selected>Select status</option>
         <option value="ACTIVE">Active</option>
@@ -53,7 +48,7 @@
     </div>
 
     <div class="btn-container">
-      <button type="submit" class="btn btn-success" [disabled]="!UserForm.form.valid"> Update Movie </button>
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid"> Update User </button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     </div>
   </form>
@@ -62,7 +57,7 @@
 <div class="container" *ngIf="pageMode === 'add'">
   <h2>Add User</h2>
 
-  <form (ngSubmit)="onSubmit()" #UserForm="ngForm" novalidate>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" id="username" name="username" class="form-control" [(ngModel)]="registeredUser.username" required/>
@@ -75,7 +70,7 @@
 
     <div class="mb-3">
       <label for="role" class="form-label">Role</label>
-      <select id="role" name="role" class="form-control" [(ngModel)]="user.role" required>
+      <select id="role" name="role" class="form-control" [(ngModel)]="registeredUser.role" required>
         <option value="" disabled selected>Select role</option>
         <option value="MANAGER">Manager</option>
         <option value="RECEPTIONIST">Receptionist</option>
@@ -85,7 +80,7 @@
 
     <div class="mb-3">
       <label for="fullName" class="form-label">Full Name</label>
-      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="registeredUser.fullName"/>
+      <input type="text" id="fullName" name="fullName" class="form-control" [(ngModel)]="registeredUser.fullName" required/>
     </div>
 
     <div class="mb-3">
@@ -100,7 +95,7 @@
 
     <div class="mb-3">
       <label for="status" class="form-label">Status</label>
-      <select id="status" name="status" class="form-control" [(ngModel)]="user.status" required>
+      <select id="status" name="status" class="form-control" [(ngModel)]="registeredUser.status" required>
         <option value="" disabled selected>Select status</option>
         <option value="ACTIVE">Active</option>
         <option value="BUSY">Busy</option>
@@ -109,7 +104,7 @@
     </div>
 
     <div class="btn-container">
-      <button type="submit" class="btn btn-success" [disabled]="!UserForm.form.valid"> Add Movie </button>
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid"> Add New User </button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     </div>
   </form>
@@ -117,39 +112,39 @@
 
 <div class="details-container" *ngIf="pageMode === 'details'">
   <div class="details-content">
-    <h1 class="movie-title-large"> {{ user.fullName }} </h1>
+    <h1 class="user-title-large"> {{ user.fullName }} </h1>
 
-    <div class="movie-info">
+    <div class="user-info">
       <div class="info-item">
         <div class="info-label">Username</div>
-        <div class="info-value">{{ user.username }}</div>
+        <div class="info-value"> {{ user.username }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Role</div>
-        <div class="info-value">{{ user.role }}</div>
+        <div class="info-value"> {{ user.role }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Email</div>
-        <div class="info-value">{{ user.email }}</div>
+        <div class="info-value"> {{ user.email }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Phone Number</div>
-        <div class="info-value">{{ user.phoneNumber }}</div>
+        <div class="info-value"> {{ user.phoneNumber }} </div>
       </div>
 
       <div class="info-item">
         <div class="info-label">Status</div>
-        <div class="info-value">{{ user.status }}</div>
+        <div class="info-value"> {{ user.status }} </div>
       </div>
     </div>
   </div>
 
   <div class="details-actions">
     <button class="btn btn-secondary" (click)="cancel()"> ← Back to Users </button>
-    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit User </button>
-    <button class="btn btn-danger" (click)="delete(user.id!)"> 🗑️ Delete User </button>
+    <button class="btn btn-warning" (click)="switchToEdit()"> ✏️ Edit </button>
+    <button class="btn btn-danger" (click)="deleteUser(user.id!)"> 🗑️ Delete </button>
   </div>
 </div>

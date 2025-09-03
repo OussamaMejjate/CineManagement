@@ -2,7 +2,7 @@
   <header class="header">
     <h1 class="app-title">👥 Users Management</h1>
     <div class="header-actions">
-      <button class="btn btn-primary" (click)="add()"> ✨ Add User </button>
+      <button class="btn btn-primary" (click)="addUser()"> ✨ Add User </button>
       <button class="btn btn-logout" (click)="goBack()"> ← Back to Movies </button>
     </div>
   </header>
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="user-row" *ngFor="let user of users" (click)="details(user.id!)">
+        <tr class="user-row" *ngFor="let user of users" (click)="detailsUser(user.id!)">
           <td class="user-info">
             <div class="user-avatar"> {{ getInitials(user.fullName!) }} </div>
             <div class="user-details">
@@ -29,15 +29,12 @@
             </div>
           </td>
           <td class="user-email"> {{ user.email }} </td>
-          <td class="user-role">
-            <span class="role-badge"> {{ user.role }} </span>
-          </td>
-          <td class="user-status">
-            <span class="status-badge"><span class="status-dot"></span> {{ user.status }} </span>
-          </td>
+          <td class="user-role"> {{ user.role }} </td>
+          <td class="user-status"> {{ user.status }} </td>
+
           <td class="user-actions">
-            <button class="btn btn-sm btn-edit" (click)="edit(user.id!)" title="Edit User"> ✏️ </button>
-            <button class="btn btn-sm btn-delete" (click)="delete(user.id!); $event.stopPropagation()" title="Delete User"> 🗑️ </button>
+            <button class="btn btn-sm btn-edit" (click)="editUser(user.id!)" title="Edit User"> ✏️ </button>
+            <button class="btn btn-sm btn-delete" (click)="deleteUser(user.id!); $event.stopPropagation()" title="Delete User"> 🗑️ </button>
           </td>
         </tr>
       </tbody>

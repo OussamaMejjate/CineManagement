@@ -26,22 +26,22 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  add(): void {
+  addUser(): void {
     this.router.navigate(['/users/add'], { queryParams: { pageMode: 'add' } });
   }
 
-  edit(id: number): void {
+  editUser(id: number): void {
     this.router.navigate(['/users/edit', id], { queryParams: { pageMode: 'edit' } });
   }
 
-  details(id: number): void {
+  detailsUser(id: number): void {
     this.router.navigate(['/users/details', id], { queryParams: { pageMode: 'details' } });
   }
 
   getInitials(name: string): string {
     if (!name) return '?';
 
-    const words = name.split('');
+    const words = name.split(' ');
 
     if (words.length === 1) {
       return words[0].substring(0, 2).toUpperCase();
@@ -50,8 +50,8 @@ export class UserListComponent implements OnInit {
     return (words[0][0] + words[words.length - 1][0]).toUpperCase();
   }
 
-  delete(id: number): void {
-    if (confirm('Are you sure you want to delete this movie?')) {
+  deleteUser(id: number): void {
+    if (confirm('Are you sure you want to delete this user?')) {
       this.userService.delete(id).subscribe(() => {
         this.loadUsers();
       })
